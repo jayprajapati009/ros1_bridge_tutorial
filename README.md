@@ -1,6 +1,6 @@
-# Tutorial: Using `ros1_bridge` Package for ROS 1 (Noetic) and ROS 2 (Humble)
+# Tutorial: Using `ros1_bridge` Package for ROS1 (Noetic) and ROS2 (Humble)
 
-In this tutorial, you will learn how to use the [`ros1_bridge`](https://github.com/ros2/ros1_bridge) package to enable communication between ROS 1 (Noetic) and ROS 2 (Humble). This is useful when transitioning from ROS 1 to ROS 2, as it allows nodes from both ecosystems to exchange messages seamlessly.
+In this tutorial, you will learn how to use the [`ros1_bridge`](https://github.com/ros2/ros1_bridge) package to enable communication between ROS1 (Noetic) and ROS2 (Humble). This is useful when transitioning from ROS1 to ROS2, as it allows nodes from both ecosystems to exchange messages seamlessly.
 
 ## Dependencies
 
@@ -29,7 +29,7 @@ cd ~/bridge_ws/src
 git clone https://github.com/ros2/ros1_bridge.git
 ```
 
-Before building the ROS1 bridge, ensure that everything else is built using standard Colcon arguments. It is not recommended to have the ROS1 environment sourced during this step, as doing so can add additional libraries to the path and potentially cause conflicts. Building your ROS 2 workspace without sourcing ROS1 environment variables will help maintain a clean and isolated environment for your ROS 2 packages.
+Before building the ROS1 bridge, ensure that everything else is built using standard Colcon arguments. It is not recommended to have the ROS1 environment sourced during this step, as doing so can add additional libraries to the path and potentially cause conflicts. Building your ROS2 workspace without sourcing ROS1 environment variables will help maintain a clean and isolated environment for your ROS2 packages.
 
 ```sh
 cd ~/bridge_ws
@@ -77,7 +77,7 @@ source /opt/ros/noetic/setup.bash
 roscore
 ```
 
-**Terminal-2:** The dynamic bridge, once started, functions by monitoring the availability of ROS1 and ROS 2 topics. When it identifies a matching topic in both ecosystems, it initiates the bridging process for messages on that specific topic. This allows communication and message exchange between ROS1 and ROS2 nodes, enabling interoperability between the two systems. Let's start the dynamic bridge.
+**Terminal-2:** The dynamic bridge, once started, functions by monitoring the availability of ROS1 and ROS2 topics. When it identifies a matching topic in both ecosystems, it initiates the bridging process for messages on that specific topic. This allows communication and message exchange between ROS1 and ROS2 nodes, enabling interoperability between the two systems. Let's start the dynamic bridge.
 
 ```sh
 # source the ROS1 environment first 
@@ -170,7 +170,7 @@ rosrun roscpp_tutorials listener
 
 ## Example 3
 
-In this example, we will demonstrate how the bridge can pass larger and more complex messages between ROS 1 and ROS 2. We'll set up a scenario where a ROS 2 node publishes images from a camera, and on the ROS 1 side, we'll use rqt_image_view to visualize these images in a graphical user interface (GUI). Additionally, a ROS 1 publisher can send a message to toggle an option in the ROS 2 node.
+In this example, we will demonstrate how the bridge can pass larger and more complex messages between ROS1 and ROS2. We'll set up a scenario where a ROS2 node publishes images from a camera, and on the ROS1 side, we'll use rqt_image_view to visualize these images in a graphical user interface (GUI). Additionally, a ROS1 publisher can send a message to toggle an option in the ROS2 node.
 
 **Terminal-1:** First lets start a ROS1 `roscore`,
 
@@ -214,4 +214,5 @@ ros2 run image_tools cam2image
 
 [3] <https://www.theconstructsim.com/how-to-communicate-between-ros1-ros2-with-ros1_bridge/>
 
->This tutorial should help you get started with using the ros1_bridge package to enable communication between ROS 1 (Noetic) and ROS 2 (Humble) nodes. You can extend this knowledge to adapt more complex ROS 1 nodes to ROS 2 or vice versa as needed for your projects.
+This tutorial should help you get started with using the ros1_bridge package to enable communication between ROS1 (Noetic) and ROS2 (Humble) nodes. You can extend this knowledge to adapt more complex ROS1 nodes to ROS2 or vice versa as needed for your projects.
+(time to open links in a new tab)
