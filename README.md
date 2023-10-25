@@ -209,7 +209,9 @@ ros2 run image_tools cam2image
 ## References
 
 [1] <https://github.com/ros2/ros1_bridge#example-1a-ros-1-talker-and-ros-2-listener>
+
 [2] <https://industrial-training-master.readthedocs.io/en/melodic/_source/session7/ROS1-ROS2-bridge.html>
+
 [3] <https://www.theconstructsim.com/how-to-communicate-between-ros1-ros2-with-ros1_bridge/>
 
 >This tutorial should help you get started with using the ros1_bridge package to enable communication between ROS 1 (Noetic) and ROS 2 (Humble) nodes. You can extend this knowledge to adapt more complex ROS 1 nodes to ROS 2 or vice versa as needed for your projects.
