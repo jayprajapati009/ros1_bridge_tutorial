@@ -70,18 +70,14 @@ colcon build --symlink-install --packages-select ros1_bridge --cmake-force-confi
 
 Let's try out an example where we initiate a ROS1 Talker (publisher) and a ROS2 Listener (subscriber) using `ros1_bridge`.
 
-### Terminal-1
-
-First lets start a ROS1 `roscore`,
+**Terminal-1:** First lets start a ROS1 `roscore`,
 
 ```sh
 source /opt/ros/noetic/setup.bash
 roscore
 ```
 
-### Terminal-2
-
-The dynamic bridge, once started, functions by monitoring the availability of ROS1 and ROS 2 topics. When it identifies a matching topic in both ecosystems, it initiates the bridging process for messages on that specific topic. This allows communication and message exchange between ROS1 and ROS2 nodes, enabling interoperability between the two systems. Let's start the dynamic bridge.
+**Terminal-2:** The dynamic bridge, once started, functions by monitoring the availability of ROS1 and ROS 2 topics. When it identifies a matching topic in both ecosystems, it initiates the bridging process for messages on that specific topic. This allows communication and message exchange between ROS1 and ROS2 nodes, enabling interoperability between the two systems. Let's start the dynamic bridge.
 
 ```sh
 # source the ROS1 environment first 
@@ -106,18 +102,14 @@ ros2 run ros1_bridge dynamic_bridge
 
 The last command will start outputting the currently available topics in ROS1 and ROS2 in a regular interval.
 
-### Terminal-3
-
-Here, we will initiate the ROS1
+**Terminal-3:** Here, we will initiate the ROS1 talker
 
 ```sh
 source /opt/ros/noetic/setup.bash
 rosrun rospy_tutorials talker
 ```
 
-### Terminal-4
-
-Here, we will initiate the ROS2 listener
+**Terminal-4:** Here, we will initiate the ROS2 listener
 
 ```sh
 source ~/ros2_humble/install/setup.bash
@@ -125,3 +117,99 @@ ros2 run demo_nodes_cpp listener
 ```
 
 If the ROS2 node (Terminal-4) starts printing the messages published by ROS1 node (Terminal-3). The ros1_bridge is working successfully.
+
+## Example 2
+
+Now, let's try out an example where we initiate a ROS2 Talker (publisher) and a ROS1 Listener (subscriber) using `ros1_bridge`.
+
+**Terminal-1:** First lets start a ROS1 `roscore`,
+
+```sh
+source /opt/ros/noetic/setup.bash
+roscore
+```
+
+**Terminal-2:** Let's start the dynamic bridge.
+
+```sh
+# source the ROS1 environment first 
+source /opt/ros/noetic/setup.bash
+```
+
+```sh
+# now, source the ROS2 environment
+source ~/ros2_humble/install/setup.bash
+```
+
+```sh
+# source the bridge_ws
+source ~/bridge_ws/install/setup.bash
+```
+
+```sh
+# connect the ROS_MASTER_URI
+export ROS_MASTER_URI=http://localhost:11311
+ros2 run ros1_bridge dynamic_bridge
+```
+
+The last command will start outputting the currently available topics in ROS1 and ROS2 in a regular interval.
+
+**Terminal-3:** Here, we will initiate the ROS2 talker
+
+```sh
+source ~/ros2_humble/install/setup.bash
+ros2 run demo_nodes_py talker
+```
+
+**Terminal-4:** Here, we will initiate the ROS1 listener
+
+```sh
+source /opt/ros/noetic/setup.bash
+rosrun roscpp_tutorials listener
+```
+
+## Example 3
+
+In this example, we will demonstrate how the bridge can pass larger and more complex messages between ROS 1 and ROS 2. We'll set up a scenario where a ROS 2 node publishes images from a camera, and on the ROS 1 side, we'll use rqt_image_view to visualize these images in a graphical user interface (GUI). Additionally, a ROS 1 publisher can send a message to toggle an option in the ROS 2 node.
+
+**Terminal-1:** First lets start a ROS1 `roscore`,
+
+```sh
+source /opt/ros/noetic/setup.bash
+roscore
+```
+
+**Terminal-2:** Let's start the dynamic bridge.
+
+```sh
+source /opt/ros/noetic/setup.bash
+source ~/ros2_humble/install/setup.bash
+source ~/bridge_ws/install/setup.bash
+# connect the ROS_MASTER_URI
+export ROS_MASTER_URI=http://localhost:11311
+ros2 run ros1_bridge dynamic_bridge
+```
+
+The last command will start outputting the currently available topics in ROS1 and ROS2 in a regular interval.
+
+**Terminal-3:** Here, we will initiate the ROS1 GUI
+
+```sh
+source /opt/ros/noetic/setup.bash
+rqt_image_view /image
+```
+
+**Terminal-4:** Here, we will initiate the ROS2 image publisher from the `image_tools`
+
+```sh
+source ~/ros2_humble/install/setup.bash
+ros2 run image_tools cam2image
+```
+
+## References
+
+[1] <https://github.com/ros2/ros1_bridge#example-1a-ros-1-talker-and-ros-2-listener>
+[2] <https://industrial-training-master.readthedocs.io/en/melodic/_source/session7/ROS1-ROS2-bridge.html>
+[3] <https://www.theconstructsim.com/how-to-communicate-between-ros1-ros2-with-ros1_bridge/>
+
+>This tutorial should help you get started with using the ros1_bridge package to enable communication between ROS 1 (Noetic) and ROS 2 (Humble) nodes. You can extend this knowledge to adapt more complex ROS 1 nodes to ROS 2 or vice versa as needed for your projects.
